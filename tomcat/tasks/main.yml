@@ -1,0 +1,10 @@
+---
+- name: Install Tomcat package
+  yum: name=tomcat state=latest
+
+- name: Start tomcat service
+  service: name=tomcat state=started
+
+- name: Deploy sample war file
+  copy: src=sample.war dest=/usr/share/tomcat/webapps
+  notify: Restart tomcat package
